@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: 'Rubik';
+}
+
+body {
+    background-color: #d0a7ff;
+}
+
+body h1 {
+    text-align: center;
+    color: white;
+    font-size: 2.5rem;
+}
+
+[data-interaction="inputs-area"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+[data-interaction="inputs-area"] input {
+    margin: 10px;
+    max-width: 100%;
+}
+
+[data-interaction="inputs-area"] input[type="text"] {
+    width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    border: none;
+    box-shadow: 10px 10px #c18bff;
+}
+
+[data-interaction="inputs-area"] input[type="text"]:focus {
+    outline: none;
+}
+
+[data-interaction="inputs-area"] input[type="button"] {
+    font-size: 1.5rem;
+    width: 250px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 10px 10px #c18bff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 10px;
+}
+
+[data-interaction="inputs-area"] input[type="button"]:active {
+    transform: scale(.95);
+}
+
+[data-list="items"] {
+    font-size: 2rem;
+    color: white;
+    list-style-type: none;
+}
+
+[data-list="items"] li {
+    counter-increment: item;
+}
+
+[data-list="items"] li::before {
+    content: counter(item) ".\00A0";
+    color: #ae67ff;
+}
+
