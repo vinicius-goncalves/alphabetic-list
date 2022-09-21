@@ -31,6 +31,27 @@ async function makeTransaction(objectStore, transactionType = 'readonly') {
 
 }
 
+export function getAllByIndex(idx, callback) {
+
+    makeTransaction('items').then(store => {
+        const index = store.index(idx)
+        const query = index.getAll()
+        query.addEventListener('success', (event) => {
+            const result = event.target.result
+            callback(result)
+        })
+    })
+}
+
+export function getByID(id, callback) {
+    makeTransaction('items').then(store => {
+        const query = store.get(id)
+        query.addEventListener('success', (event) => {
+            callback(event.target.result)
+        })
+    })
+}
+
 export function addNewItemIntoDBStore(itemToAdd) {
     
     try {
@@ -44,8 +65,9 @@ export function addNewItemIntoDBStore(itemToAdd) {
                     value: itemToAdd
                 })
     
-                query.addEventListener('success', () => {
-                    resolve({ type: 'success', message: 'Added', added: true })
+                query.addEventListener('success', (event) => {
+                    const { result } = event.target
+                    resolve({ type: 'success', message: 'Added', added: true, id: result })
                 })
                 query.addEventListener('error', () => {
                     reject({ type: 'error', message: 'Not added', added: false })
@@ -59,5 +81,3 @@ export function addNewItemIntoDBStore(itemToAdd) {
         console.warn(error)
     }
 }
-
-export function getByIndex() {}

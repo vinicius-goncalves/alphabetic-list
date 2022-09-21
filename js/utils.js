@@ -17,3 +17,10 @@ export function randomUUID() {
     })
     return uuid
 }
+
+export function createItem(textContent, itemId) {
+    const li = document.createElement('li')
+    li.textContent = textContent
+    li.dataset.itemId = itemId
+    return li
+}
