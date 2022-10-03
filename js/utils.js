@@ -1,4 +1,10 @@
-export function randomID() {
+export {
+    randomID,
+    randomUUID,
+    createItem
+}
+
+function randomID() {
 
     const currentTime = Date.now() % 16
     const firstRandom = Math.round(Math.random() * Number.MAX_SAFE_INTEGER)
@@ -8,7 +14,7 @@ export function randomID() {
     
 }
 
-export function randomUUID() {
+function randomUUID() {
     let dateTime = Date.now() * Number.MAX_SAFE_INTEGER
     const uuid = 'xxxxxxxx-xxxxx-4xxxx-yxxx'.replace(/[xy]/g, (char) => {
         dateTime = dateTime / 16
@@ -18,7 +24,7 @@ export function randomUUID() {
     return uuid
 }
 
-export function createItem(textContent, itemId) {
+function createItem(textContent, itemId) {
     const li = document.createElement('li')
     li.textContent = textContent
     li.dataset.itemId = itemId

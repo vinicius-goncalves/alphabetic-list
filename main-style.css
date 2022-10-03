@@ -49,6 +49,7 @@ body h1 {
     cursor: pointer;
     font-weight: bold;
     padding: 10px;
+    margin: 15px;
 }
 
 [data-interaction="inputs-area"] input[type="button"]:active {

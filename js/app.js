@@ -46,13 +46,37 @@ function sortItem (items) {
     return newArray
 }
 
-sortButton.addEventListener('click', () => {
-    
-    const itemsListToArray = Array.from(itemsList.children)
-    const itemsSorted = sortItem(itemsListToArray)
+const a = []
+for(let i = 0; i < 26; i++) {
+    a.push(Math.round((Math.random() * 99999 - 9999 + 1) + 9999))
+}
 
-    itemsSorted.forEach(item => itemsList.append(item))
+sortButton.addEventListener('click', (event) => {
     
+
+    event.target.setAttribute('disabled', 'true')
+
+    const itemsListToArray = Array.from(itemsList.children)
+    const itemsSorted = sortItem(itemsListToArray).reverse()
+
+    const allLiItemID = itemsListToArray.map(item => item.dataset.itemId)
+
+    let i = 0
+
+    const interval = setInterval(() => {
+
+        
+        const itemFound = document.querySelector(`[data-item-id="${itemsSorted[i].dataset.itemId}"]`)
+        itemsList.insertAdjacentElement('afterbegin', itemFound)
+
+        i++
+        if(i >= itemsListToArray.length) {
+            clearInterval(interval)
+            event.target.removeAttribute('disabled')
+
+        }
+
+    }, 100)
 })
 
 async function addTerm(value) {
